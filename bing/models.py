@@ -5,33 +5,28 @@ from django.db import models
 # Create your models here.
 
 class Image(models.Model):
+    # ID
     id = models.AutoField(primary_key=True)
+    # 创建时间
     create_time = models.DateTimeField()
-    start_date = models.TextField(default='')
-    full_start_date = models.TextField(default='')
+    # 日期
     end_date = models.TextField(default='')
     format_date = models.DateField(default='')
-    url = models.TextField(default='')
+    # base url
     url_base = models.TextField(default='')
+    # 版权
     copy_right = models.TextField(default='')
-    copy_right_link = models.TextField(default='')
+    # 标题
     title = models.TextField(default='')
-    quiz = models.TextField(default='')
-    hsh = models.TextField(default='')
-    wp = models.IntegerField(default=0)
-    drk = models.IntegerField(default=0)
-    top = models.IntegerField(default=0)
-    bot = models.IntegerField(default=0)
-    hs = models.TextField(default='')
-    local_path = models.TextField(default='')
-    local_name = models.TextField(default='')
-    local_size = models.IntegerField(default=0)
+    # 文件CDN名称
     cdn_file_name = models.TextField(default='')
-    ori_file_name = models.TextField(default='')
+    # 清晰度大小
     clear_type = models.TextField(default='')
+    # 小图清晰度大小
     small_type = models.TextField(default='')
+    # 文件后缀名
     file_ext = models.TextField(default='')
-    down_count = models.IntegerField(default=0)
+    # 点击次数
     click_count = models.IntegerField(default=0)
 
     def __str__(self):

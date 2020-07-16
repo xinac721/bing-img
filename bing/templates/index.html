@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="applicable-device" content="pc,mobile" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="wap-font-scale" content="no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <link rel="shortcut icon" type="images/x-icon" href="//s.xinac.net/favicon.ico" />
+	<title>{{ SITE_NAME }}</title>
+	<meta name="author" content="https://bing.xinac.net" />
+	<meta name="version" content="v1.0" />
+	<meta name="keywords" content="{{ SITE_NAME }}" />
+	<meta name="description" content="{{ SITE_NAME }},bing.xinac.net" />
+    <link rel="stylesheet" href="{{ STATIC_CDN_URL }}/static/font-awesome/v5.9.0/css/all.min.css" id="fontawesome-css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_CDN_URL }}/static/layui/v2.5.6/css/layui.css" type="text/css" >
+	<link rel="stylesheet" href="{{ STATIC_CDN_URL }}/assets/css/simple-line-icons.css" id="simple-line-icons-css" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ STATIC_CDN_URL }}/assets/css/main.css" id="nicetheme-css" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ STATIC_CDN_URL }}/assets/css/reset.css" id="reset-css" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ STATIC_CDN_URL }}/assets/css/style.css" id="style-css" type="text/css" media="all">
+	<script src="{{ STATIC_CDN_URL }}/assets/js/jquery.min.js"></script>
+
+	<style type="text/css">
+		.card {
+			border-radius: .3rem !important;
+		}
+
+		.grid-border.grid-radius .item-card .card .custom-hover,
+		.grid-hover.grid-radius .item-card .card:hover .custom-hover,
+		.grid-radius .cms-push-liststyle01 .card .custom-hover {
+			border-top-right-radius: .3rem;
+			border-top-left-radius: .3rem;
+		}
+	</style>
+
+</head>
+
+<body class="home blog black-top grid-hover grid-radius grid-border nt_second_menu_height_100">
+	<style>
+		.bg-img-full {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		@media (max-width: 764px) {
+			.d-show {
+				display: inline !important;
+			}
+
+			.d-md-none {
+				display: none !important;
+			}
+		}
+        
+        .am-topbar{
+            background:#f4f4f4;
+            position: relative;
+            min-height: 50px;
+            margin-bottom: 1.6rem;
+            
+            border-width: 0 0 1px;
+            border-style: solid;
+            border-color: #ddd;
+            color: #666;
+        }
+        .am-topbar h2{
+            line-height:50px;
+        }
+        .container .navbar-end {
+            float: right;
+            font-size: 20px;
+        }
+	</style>
+
+	<section class="am-topbar">
+		<div class="container">
+            <h2>
+                <a href="/" target="_self" title="{{ SITE_NAME }}">
+                    <img src="{{ STATIC_CDN_URL }}/bing.ico" style="width: 25px; margin-top: -5px;" alt="{{ SITE_NAME }}">
+                </a>
+				{# 网站关于信息 #}
+                <a href="https://blog.xinac.cn/archives/bing-image.html" target="_blank" title="关于">  {{ SITE_NAME }}</a>
+				{# GitHub地址 #}
+                <span class="navbar-end">
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/xinac721">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </span>
+            </h2>
+		</div>
+	</section>
+
+	<section class="nice-warp nice-warp-single my-4 my-md-5">
+		<div class="container">
+			<main class="nice-main">
+				<div class="posts-list" id="view_photoList">
+					<div class="list-inner home-list row list-xs-6 row-10 row-xs-15 ">
+                        {% for item in page_list %}
+					    <div class="item-card d-flex col-12 col-sm-6 col-md-3 col-lg-3">
+							<article class="card flex-fill mb-4 mb-sm-4-2 mb-md-4 mb-lg-4-2">
+								<div class="image">
+								{% if item.is_less_than_date %}
+								    <a class="show" href="{{ IMAGE_CDN_URL }}/{{ item.cdn_file_name }}" title="{{ item.title }}">
+										<div class="custom-hover d-block">
+											<img src="{{ IMAGE_CDN_URL }}/{{ item.cdn_file_name }}{{ IMAGE_CDN_STYLE }}"
+												 class="custom-hover-img timthumb_php bg-img-full lazyloaded"
+												 data-src="{{ IMAGE_CDN_URL }}/{{ item.cdn_file_name }}{{ IMAGE_CDN_STYLE }}"
+                                                 data-date="{{ item.end_date }}"
+												 alt="{{ item.title }}">
+										</div>
+									</a>
+								{% else %}
+								    <a class="show" href="{{ item.url_base }}_{{ item.clear_type }}.{{ item.file_ext }}" title="{{ item.title }}">
+										<div class="custom-hover d-block">
+											<img src="{{ item.url_base }}_{{ item.small_type }}.{{ item.file_ext }}"
+												 class="custom-hover-img timthumb_php bg-img-full lazyloaded"
+												 data-src="{{ item.url_base }}_{{ item.small_type }}.{{ item.file_ext }}"
+                                                 data-date="{{ item.end_date }}"
+                                                 alt="{{ item.title }}">
+										</div>
+									</a>
+								{% endif %}
+								</div>
+								<div class="card-body d-flex flex-column content mt-1 mt-md-2">
+									<div class="title flex-grow-1 mt-2">
+										<h2 class="font-16 font-md-14 font-xs-16 text-l2 font-weight-normal light-14">
+											<a href="javascript:;" onclick="location.href='./detail/{{ item.end_date }}'" title="{{ item.copy_right }}">{{ item.title }}</a>
+										</h2>
+									</div>
+									<div class="desc mt-2 d-none d-md-none">
+										<p class="text-l2 font-md-12 text-secondary"></p>
+									</div>
+									<div
+										class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-flex">
+										<div class="flex-fill d-flex ">
+											<span class="u-time">{{ item.format_date }}</span>
+										</div>
+										<div class="text-nowrap">
+											<span class="u-view d-none d-lg-none"><i class="fa fa-eye"></i>{{ item.click_count }}</span>
+											<span class="u-comment d-none d-show d-lg-inline-block"><i class="fa fa-eye"></i> {{ item.click_count }}</span>
+										</div>
+									</div>
+								</div>
+							</article>
+						</div>
+                        {% endfor %}
+					</div>
+
+					<div class="clearfix" style="text-align: center;">
+						<div id="page_split_bar"></div>
+						<script src="{{ STATIC_CDN_URL }}/static/layui/v2.5.6/layui.js" charset="utf-8"></script>
+						<script>
+							layui.use(['laypage'], function(){
+                                var laypage = layui.laypage;
+                                var device = layui.device();
+                                if(device.android || device.ios || device.mobile || device.weixin){
+                                    laypage.render({
+                                        elem: 'page_split_bar',
+                                        count: {{ total_num }},
+                                        limit: {{ IMAGE_PAGE_COUNT }},
+                                        curr:  {{ curr_page }},
+                                        layout: ['count', 'prev', 'next'],
+                                        jump: function(obj, first){
+                                            if (!first){
+                                                location.href = '?page=' + obj.curr;
+                                            } else if (obj.curr == 1) {
+                                                $.getJSON('./preview?date=');
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    laypage.render({
+                                        elem: 'page_split_bar',
+                                        count: {{ total_num }},
+                                        limit: {{ IMAGE_PAGE_COUNT }},
+                                        curr:  {{ curr_page }},
+                                        layout: ['count', 'prev', 'page', 'next', 'skip'],
+                                        jump: function(obj, first){
+                                            if (!first){
+                                                location.href = '?page=' + obj.curr;
+                                            } else if (obj.curr == 1) {
+                                                $.getJSON('./preview?date=');
+                                            }
+                                        }
+                                    });
+                                }
+							});
+						</script>
+					</div>
+					<div class="posts-ajax-load"></div>
+				</div>
+			</main>
+		</div>
+	</section>
+
+    <footer class="foot">
+		<p>
+			{# 网站版权信息，请尽量保留作者版权 #}
+			© 2020 <a href="https://www.xinac.cn" target="_blank"> 新逸Cary</a>&emsp;<a href="https://github.com/xinac721" target="_blank" title="GitHub"> <i class="fab fa-github"></i></a>
+		</p>
+        <div style="display: none;">
+			{# 网站统计代码 #}
+
+        </div>
+    </footer>
+	<div class="scroll-to-top floating-button d-sm-none d-none d-sm-block active">
+		<a href="#"><i class="fa fa-angle-up"></i></a>
+	</div>
+
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/assets/js/nc-popup.js"></script>
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/assets/js/nc-poster.js"></script>
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/assets/js/lazysizes.min.js"></script>
+	<link rel="stylesheet" href="{{ STATIC_CDN_URL }}/source/lib/lg/css/lightgallery.css">
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/source/lib/lg/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/source/lib/lg/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_CDN_URL }}/source/lib/lg/js/lg-fullscreen.min.js"></script>
+	<script>
+		var views = [];
+		views.push('view_photoList');
+		views.forEach(function (value) {
+			var lg = document.getElementById((value));
+
+            lg.addEventListener('onAfterSlide', function(event){
+                var index = event.detail.index;
+                var img_node = $(event.srcElement).find("img")[index];
+                var date = $(img_node).data('date');
+                $.getJSON('./preview', {date: date}, function (data) {
+                    if (data.code != 1){
+                        console.error(data.msg);
+                    }
+                });
+            }, false);
+
+			lightGallery(lg, {
+				mode: 'lg-slide',
+				cssEasing: 'ease',
+				speed: 500,
+				thumbnail: true,
+				animateThumb: true,
+				showThumbByDefault: true,
+				autoplay: true,
+				progressBar: true,
+				selector: '.show'
+			});
+		})
+	</script>
+
+</body>
+</html>

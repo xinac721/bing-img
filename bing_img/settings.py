@@ -14,7 +14,7 @@ import os
 import pymysql
 
 # 告诉django用pymysql代替mysqldb连接数据库
-pymysql.install_as_MySQLdb()
+# pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'lh13l4(%-$hdxn9kppbrminaf3zp+flv-(r2qfcm19pydkl+je'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,18 +82,18 @@ WSGI_APPLICATION = 'bing_img.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bing_img',
-        'HOST': '127.0.0.1',
-        'PORT': 3306,
-        'USER': 'root',
-        'PASSWORD': '1234'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'bing_img',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': 3306,
+    #     'USER': 'root',
+    #     'PASSWORD': '1234'
+    # }
 }
 
 
@@ -149,7 +149,7 @@ STATICFILES_DIRS = [
 SITE_NAME = '必应壁纸 - 每日一图'
 
 # 图片CDN网址
-IMAGE_CDN_URL = 'http://qiniucdn.xinac.net'
+IMAGE_CDN_URL = ''
 
 # CDN图片处理样式
 IMAGE_CDN_STYLE = '?x-image-process=style/style-400x240'
@@ -157,10 +157,11 @@ IMAGE_CDN_STYLE = '?x-image-process=style/style-400x240'
 # CDN结束日期
 # '' ：不使用CDN
 # 'now' or '-' ：全部使用CDN
-IMAGE_CDN_END_DATE = '2019-01-01'
+IMAGE_CDN_END_DATE = ''
 
 # 静态资源CDN网址
-STATIC_CDN_URL = '/static'
+STATIC_CDN_URL = '//s.xinac.net'
+# STATIC_CDN_URL = '/static'
 
 # 每页显示数量
 IMAGE_PAGE_COUNT = 16
