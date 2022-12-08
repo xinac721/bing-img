@@ -2,7 +2,7 @@ appdirs==1.4.3
 asgiref==3.2.7
 beautifulsoup4==4.9.0
 bs4==0.0.1
-certifi==2020.4.5.1
+certifi==2022.12.7
 chardet==3.0.4
 distlib==0.3.0
 Django==3.1.14
